@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { MdDialog } from 'ng2-material/components/dialog';
 import { MdDataTable } from 'ng2-material/components/data-table';
+import { MdDataTableSelectableRow } from 'ng2-material/components/data-table';
+import { MdDataTableHeaderSelectableRow } from 'ng2-material/components/data-table';
 
 import { AppComponent } from './app.component';
 
@@ -12,14 +14,15 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     MdDialog,
-    MdDataTable
+    MdDataTable,
+    MdDataTableSelectableRow,
+    MdDataTableHeaderSelectableRow
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot(),
-    //Ng2MaterialModule.forRoot(),
+    MaterialModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

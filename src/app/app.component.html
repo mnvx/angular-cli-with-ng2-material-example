@@ -5,20 +5,45 @@
 <md-input placeholder="Created" autofocus></md-input>
 
 <md-card class="wide-card">
-  <md-data-table>
-    <thead>
-      <tr>
-        <th class="md-text-cell">Material</th>
-        <th>Quantity</th>
-        <th>Unit price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="md-text-cell">111</td>
-        <td>222</td>
-        <td>333</td>
-      </tr>
-    </tbody>
-  </md-data-table>
+    <md-data-table layout-fill [selectable]="true">
+      <thead>
+        <tr>
+          <th class="md-text-cell">Material</th>
+          <th>Quantity</th>
+          <th>Unit price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let material of materials">
+          <td class="md-text-cell">{{ material.name }}</td>
+          <td>{{ material.quantity }}</td>
+          <td>{{ material.price }}</td>
+        </tr>
+      </tbody>
+    </md-data-table>
+
+    <br>
+
+    <md-toolbar *ngIf="!selection">Materials</md-toolbar>
+    <md-toolbar color="accent" *ngIf="selection">
+      <span>{{count}} item{{count > 1 ? 's' : ''}} selected</span>
+      <span flex hide show-gt-md></span>
+      <span class="md-caption" hide show-gt-md>{{selection}}</span>
+    </md-toolbar>
+    <md-data-table layout-fill [selectable]="true" (onSelectableChange)="change($event)">
+      <thead>
+        <tr md-data-table-header-selectable-row>
+          <th class="md-text-cell">Material</th>
+          <th>Quantity</th>
+          <th>Unit price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr md-data-table-selectable-row *ngFor="let material of materials" [selectable-value]="material.id">
+          <td class="md-text-cell">{{ material.name }}</td>
+          <td>{{ material.quantity }}</td>
+          <td>{{ material.price }}</td>
+        </tr>
+      </tbody>
+    </md-data-table>
 </md-card>
